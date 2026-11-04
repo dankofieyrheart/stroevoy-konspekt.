@@ -1,550 +1,63 @@
-
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#111827">
-<title>Строевой конспект</title>
-<link rel="manifest" href="manifest.webmanifest">
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#00545F"><link rel="manifest" href="manifest.webmanifest"><title>Конспект командира</title>
 <style>
-:root {
-  --bg:#0b1220; --panel:#151f30; --panel2:#1c2a3e;
-  --text:#edf2f7; --muted:#9eacbf; --accent:#d6a84f;
-  --line:#2c3a50; --danger:#d65b5b; --green:#5eaa82;
-}
-* { box-sizing:border-box; }
-body {
-  margin:0; background:var(--bg); color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-}
-header {
-  padding:22px 16px 16px; background:#111b2b;
-  border-bottom:1px solid var(--line);
-}
-.header-inner, main { max-width:1000px; margin:auto; }
-h1 { margin:0; font-size:24px; }
-.subtitle { color:var(--muted); margin-top:6px; font-size:13px; }
-nav {
-  display:flex; gap:8px; overflow-x:auto; padding:12px 16px;
-  background:#111b2b; border-bottom:1px solid var(--line);
-}
-nav button { white-space:nowrap; }
-main { padding:16px; }
-.panel {
-  background:var(--panel); border:1px solid var(--line);
-  border-radius:14px; padding:16px; margin-bottom:14px;
-}
-h2 { font-size:19px; margin:0 0 14px; }
-h3 { font-size:16px; margin:18px 0 10px; }
-p { line-height:1.5; }
-.muted { color:var(--muted); font-size:13px; line-height:1.5; }
-button, .button {
-  border:1px solid var(--line); border-radius:9px;
-  padding:11px 14px; background:var(--panel2);
-  color:var(--text); font-size:14px; cursor:pointer;
-}
-button.primary { background:var(--accent); color:#171717; border-color:var(--accent); font-weight:700; }
-button.danger { border-color:var(--danger); color:#ffaaaa; }
-button:disabled { opacity:.5; cursor:not-allowed; }
-.actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
-.grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
-.field { display:flex; flex-direction:column; gap:6px; min-width:0; }
-.field.full { grid-column:1/-1; }
-label { color:var(--muted); font-size:13px; }
-input, textarea, select {
-  width:100%; padding:11px; border-radius:9px;
-  border:1px solid var(--line); background:#0e1827;
-  color:var(--text); font:inherit; font-size:14px;
-}
-textarea { min-height:85px; resize:vertical; line-height:1.45; }
-.topic-list, .plan-list { display:grid; gap:9px; }
-.topic, .plan-item {
-  display:flex; align-items:center; justify-content:space-between;
-  gap:12px; text-align:left; width:100%;
-}
-.topic span:first-child, .plan-item span:first-child { display:grid; gap:4px; }
-.topic small, .plan-item small { color:var(--muted); }
-.stage {
-  border:1px solid var(--line); border-radius:11px;
-  padding:12px; margin:10px 0; background:#101a29;
-}
-.stage-head { display:flex; justify-content:space-between; align-items:center; gap:8px; }
-.stage-head strong { font-size:14px; }
-.stage-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px; }
-.hidden { display:none !important; }
-.notice {
-  padding:11px; border-left:3px solid var(--accent);
-  background:#202b3a; border-radius:6px; color:var(--muted);
-  font-size:13px; line-height:1.5;
-}
-footer { text-align:center; color:var(--muted); font-size:12px; padding:22px; }
-@media(max-width:620px) {
-  .grid, .stage-grid { grid-template-columns:1fr; }
-  main { padding:12px; }
-  .panel { padding:13px; }
-  h1 { font-size:21px; }
-}
-@media print {
-  body { background:white; color:black; }
-  header, nav, footer, .no-print, button { display:none !important; }
-  main { max-width:none; padding:0; }
-  .panel, .stage { background:white; color:black; border:0; padding:0; }
-  input, textarea, select {
-    border:0; background:white; color:black; padding:2px;
-  }
-  label, .muted { color:#333; }
-  textarea { min-height:0; }
-  .stage { page-break-inside:avoid; }
-}
-</style>
-</head>
-<body>
-
-<header>
-  <div class="header-inner">
-    <h1>Строевой конспект</h1>
-    <div class="subtitle">Подготовка планов-конспектов строевых занятий</div>
-  </div>
-</header>
-
-<nav class="no-print">
-  <button data-page="home" class="primary">Главная</button>
-  <button data-page="editor">Редактор</button>
-  <button data-page="plans">Мои конспекты</button>
-  <button data-page="regulations">Нормативная база</button>
-</nav>
-
+:root{--t:#00545F;--l:#D6FB00;--p:#ECFFB6;--ink:#172b2d;--line:#d7e1de}*{box-sizing:border-box}body{margin:0;background:#f3f7f5;color:var(--ink);font:15px/1.45 Arial,sans-serif}header{background:var(--t);color:white;padding:22px max(16px,calc((100% - 980px)/2))}header h1{margin:0;font-size:25px}header p{margin:5px 0 0}main{max-width:980px;margin:18px auto;padding:0 14px 35px}.panel{background:white;border:1px solid var(--line);border-radius:13px;padding:17px;margin:13px 0}h2{font-size:18px;margin:0 0 12px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}label{display:block;font-weight:bold;margin:9px 0 5px}input,select{width:100%;padding:11px;border:1px solid #bdceca;border-radius:8px;font-size:15px;background:white}button{border:0;border-radius:8px;background:var(--t);color:white;padding:12px 15px;font-weight:bold;margin:8px 7px 0 0}button.alt{background:var(--p);color:var(--t)}.note{background:var(--p);padding:10px;border-left:4px solid var(--l);font-size:13px;margin-top:12px}.muted{font-size:13px;color:#5e7070}#paper{background:white;color:#111;border:1px solid #ddd;max-width:850px;margin:18px auto;padding:28px;font:14px/1.4 "Times New Roman",serif}#paper h2,#paper h3{text-align:center;color:#111}#paper h2{font-size:17px}#paper h3{font-size:15px}#paper .approval{text-align:right;margin:0 0 28px 55%}#paper table{width:100%;border-collapse:collapse;font-size:12px;margin:10px 0}#paper td,#paper th{border:1px solid #555;padding:6px;vertical-align:top}#paper .center{text-align:center}@media(max-width:620px){.grid{grid-template-columns:1fr}#paper{padding:13px}}@media print{body{background:white}header,main>.panel{display:none!important}main{margin:0;padding:0}#paper{border:0;margin:0;padding:0;max-width:none;font-size:12pt}#paper table{font-size:9pt;break-inside:avoid}}
+</style></head><body>
+<header><h1>Конспект командира</h1><p>Генератор планов-конспектов по Строевому уставу ВС РФ</p></header>
 <main>
-  <section id="page-home">
-    <div class="panel">
-      <h2>Создать конспект</h2>
-      <p class="muted">Выбери тему занятия. Приложение подготовит основу конспекта, которую можно отредактировать.</p>
-      <div id="homeTopics" class="topic-list"></div>
-      <div class="actions">
-        <button class="primary" id="blankPlan">Создать пустой конспект</button>
-      </div>
-    </div>
-    <div class="panel">
-      <h2>Последние конспекты</h2>
-      <div id="recentPlans" class="plan-list"></div>
-    </div>
-  </section>
-
-  <section id="page-editor" class="hidden">
-    <div class="panel">
-      <h2>Редактор конспекта</h2>
-      <div class="grid">
-        <div class="field full">
-          <label>Наименование подразделения / организации</label>
-          <input id="unit" placeholder="Например: 1-й мотострелковый взвод">
-        </div>
-        <div class="field full">
-          <label>Название документа</label>
-          <input id="docTitle" value="План-конспект проведения занятия">
-        </div>
-        <div class="field full">
-          <label>Тема занятия</label>
-          <input id="topic" placeholder="Укажи тему занятия">
-        </div>
-        <div class="field">
-          <label>Руководитель занятия</label>
-          <input id="leader" placeholder="Воинское звание, фамилия">
-        </div>
-        <div class="field">
-          <label>Подразделение</label>
-          <input id="group" placeholder="Например: личный состав взвода">
-        </div>
-        <div class="field">
-          <label>Место проведения</label>
-          <input id="place" placeholder="Укажи место">
-        </div>
-        <div class="field">
-          <label>Дата проведения</label>
-          <input id="date" type="date">
-        </div>
-        <div class="field">
-          <label>Продолжительность, минут</label>
-          <input id="duration" type="number" min="1" value="50">
-        </div>
-        <div class="field full">
-          <label>Цель занятия</label>
-          <textarea id="goal" placeholder="Укажи цель занятия"></textarea>
-        </div>
-        <div class="field full">
-          <label>Учебные вопросы</label>
-          <textarea id="questions" placeholder="Перечисли учебные вопросы"></textarea>
-        </div>
-        <div class="field full">
-          <label>Материальное обеспечение и литература</label>
-          <textarea id="equipment" placeholder="Укажи необходимое обеспечение и нормативные источники"></textarea>
-        </div>
-      </div>
-    </div>
-
-    <div class="panel">
-      <h2>Ход занятия</h2>
-      <p class="muted">Укажи содержание каждого этапа. Нормативные требования сверяй с соответствующей статьёй Устава.</p>
-      <div id="stages"></div>
-      <div class="actions no-print">
-        <button id="addStage">+ Добавить этап</button>
-      </div>
-    </div>
-
-    <div class="panel">
-      <h2>Дополнительные замечания</h2>
-      <textarea id="notes" placeholder="Дополнительные записи руководителя занятия"></textarea>
-      <div class="actions no-print">
-        <button class="primary" id="savePlan">Сохранить конспект</button>
-        <button id="printPlan">Печать / PDF</button>
-        <button id="newPlan">Новый конспект</button>
-      </div>
-      <p class="muted" id="saveStatus"></p>
-    </div>
-  </section>
-
-  <section id="page-plans" class="hidden">
-    <div class="panel">
-      <h2>Мои конспекты</h2>
-      <div id="allPlans" class="plan-list"></div>
-      <div class="actions no-print">
-        <button id="exportData">Экспорт резервной копии</button>
-        <button id="importData">Импорт резервной копии</button>
-        <input id="importFile" type="file" accept=".json,application/json" class="hidden">
-      </div>
-    </div>
-  </section>
-
-  <section id="page-regulations" class="hidden">
-    <div class="panel">
-      <h2>Нормативная база</h2>
-      <p>Основной источник для подготовки конспектов — Строевой устав Вооружённых Сил Российской Федерации, предоставленный пользователем.</p>
-      <div class="notice">
-        Приложение содержит ориентиры по статьям Устава. Перед проведением занятия необходимо сверять формулировки и требования с полным текстом нормативного документа. Приложение не подтверждает актуальность редакции Устава.
-      </div>
-      <h3>Справочник тем и статей</h3>
-      <div id="regulationTopics" class="topic-list"></div>
-    </div>
-  </section>
+<section class="panel"><h2>1. Данные занятия</h2><div class="grid">
+<div><label>Подразделение</label><input id="unit" placeholder="Например: 1 мотострелковый взвод"></div>
+<div><label>Уровень подразделения</label><select id="level"><option>Отделение</option><option selected>Взвод</option><option>Рота</option><option>Батальон</option></select></div>
+<div><label>Роль руководителя</label><select id="role"><option>Командир подразделения</option><option>Назначенный руководитель занятия</option></select></div>
+<div><label>Звание, фамилия, инициалы</label><input id="leader" placeholder="Сержант Иванов И.И."></div>
+<div><label>Дата</label><input id="date" type="date"></div>
+<div><label>Продолжительность</label><select id="duration"><option>50 минут</option><option>45 минут</option><option>60 минут</option><option>90 минут</option></select></div>
+<div><label>Место</label><input id="place" value="Строевой плац"></div>
+<div><label>Категория обучаемых</label><select id="aud"><option>Военнослужащие по призыву</option><option>Военнослужащие по контракту</option><option>Смешанная группа</option></select></div></div>
+<label>Тема занятия</label><select id="topic">
+<option value="27">Строевая стойка — статья 27</option><option value="28">Команды «ВОЛЬНО» и «ЗАПРАВИТЬСЯ» — статья 28</option><option value="29">Снятие и надевание головного убора — статья 29</option><option value="30">Повороты на месте — статья 30</option><option value="31">Движение: шаг и бег — статья 31</option><option value="32">Движение строевым и походным шагом — статья 32</option><option value="33">Движение бегом — статья 33</option><option value="34">Шаг на месте — статья 34</option><option value="35">Остановка движения — статья 35</option><option value="36">Изменение скорости движения — статья 36</option><option value="37">Перемещение на несколько шагов — статья 37</option><option value="38">Повороты в движении — статья 38</option></select>
+<div class="note">Нормативные положения привязаны к пользовательскому PDF «Строевой устав.pdf», страницы 7–10, статьи 27–38. Методика и распределение времени — предложения генератора, а не требования Устава.</div>
+<button id="make">Сформировать план-конспект</button><button class="alt" id="save">Сохранить в браузере</button><button class="alt" id="print">Печать / сохранить PDF</button></section>
+<section class="panel"><h2>2. Резервная копия</h2><button class="alt" id="export">Экспорт JSON</button><button class="alt" id="importBtn">Импорт JSON</button><input hidden id="file" type="file" accept="application/json"><p id="status" class="muted">Готов к работе.</p></section>
+<article id="paper" contenteditable="true"><p class="center">После заполнения формы нажмите «Сформировать план-конспект».</p></article>
 </main>
-
-<footer>Строевой конспект · версия 0.4</footer>
-
 <script>
-"use strict";
-
-const $ = id => document.getElementById(id);
-
-const TOPICS = [
-  {name:"Строевая стойка", refs:"Статья 27", detail:"Изучение положений строевой стойки. Содержание занятия необходимо сверить со статьёй 27 Устава."},
-  {name:"Повороты на месте", refs:"Статья 30", detail:"Изучение поворотов на месте. Содержание занятия необходимо сверить со статьёй 30 Устава."},
-  {name:"Движение строевым шагом", refs:"Статьи 31–32", detail:"Изучение движения строевым шагом. Содержание занятия необходимо сверить со статьями 31–32 Устава."},
-  {name:"Переход с походного шага на строевой и обратно", refs:"Статья 32", detail:"Изучение перехода с походного шага на строевой и обратно. Содержание занятия необходимо сверить со статьёй 32 Устава."},
-  {name:"Шаг на месте", refs:"Статья 34", detail:"Изучение шага на месте. Содержание занятия необходимо сверить со статьёй 34 Устава."},
-  {name:"Остановка движения", refs:"Статья 35", detail:"Изучение остановки движения. Содержание занятия необходимо сверить со статьёй 35 Устава."},
-  {name:"Изменение скорости движения", refs:"Статья 36", detail:"Изучение изменения скорости движения. Содержание занятия необходимо сверить со статьёй 36 Устава."},
-  {name:"Повороты в движении", refs:"Статья 38", detail:"Изучение поворотов в движении. Содержание занятия необходимо сверить со статьёй 38 Устава."}
-];
-
-let currentId = null;
-let currentStages = [];
-
-function esc(value) {
-  return String(value ?? "").replace(/[&<>"']/g, char => ({
-    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
-  }[char]));
-}
-
-function readPlans() {
-  try {
-    const data = JSON.parse(localStorage.getItem("stroevoyPlans") || "[]");
-    return Array.isArray(data) ? data : [];
-  } catch {
-    return [];
-  }
-}
-
-function writePlans(plans) {
-  localStorage.setItem("stroevoyPlans", JSON.stringify(plans));
-}
-
-function showPage(name) {
-  ["home","editor","plans","regulations"].forEach(page => {
-    $("page-" + page).classList.toggle("hidden", page !== name);
-  });
-  document.querySelectorAll("nav button").forEach(button => {
-    button.classList.toggle("primary", button.dataset.page === name);
-  });
-  if (name === "home") renderHome();
-  if (name === "plans") renderPlans();
-}
-
-function topicButtons(target) {
-  $(target).innerHTML = TOPICS.map((topic, index) => `
-    <button class="topic" data-topic="${index}">
-      <span><strong>${esc(topic.name)}</strong><small>${esc(topic.refs)}</small></span>
-      <span>›</span>
-    </button>
-  `).join("");
-
-  $(target).querySelectorAll("[data-topic]").forEach(button => {
-    button.addEventListener("click", () => {
-      newPlan(TOPICS[Number(button.dataset.topic)]);
-    });
-  });
-}
-
-function blankStage() {
-  return {
-    name:"Основная часть",
-    time:"",
-    content:"",
-    leader:"",
-    trainees:"",
-    source:""
-  };
-}
-
-function newPlan(topic = null) {
-  currentId = null;
-  currentStages = [
-    {name:"Вводная часть",time:"",content:"Организация занятия. Проверка готовности личного состава.",leader:"",trainees:"",source:""},
-    {name:"Основная часть",time:"",content:topic ? topic.detail : "Раскрыть учебные вопросы занятия. Сверить содержание с нормативным источником.",leader:"",trainees:"",source:topic ? topic.refs : ""},
-    {name:"Заключительная часть",time:"",content:"Подведение итогов занятия. Разбор ошибок. Постановка задач.",leader:"",trainees:"",source:""}
-  ];
-
-  clearEditor();
-  if (topic) $("topic").value = topic.name;
-  renderStages();
-  $("saveStatus").textContent = "";
-  showPage("editor");
-}
-
-function clearEditor() {
-  ["unit","topic","leader","group","place","goal","questions","equipment","notes"].forEach(id => $(id).value = "");
-  $("docTitle").value = "План-конспект проведения занятия";
-  $("date").value = "";
-  $("duration").value = "50";
-}
-
-function renderStages() {
-  $("stages").innerHTML = currentStages.map((stage,index) => `
-    <div class="stage">
-      <div class="stage-head">
-        <strong>Этап ${index + 1}</strong>
-        <button class="danger no-print" data-remove-stage="${index}">Удалить этап</button>
-      </div>
-      <div class="stage-grid">
-        <div class="field">
-          <label>Наименование этапа</label>
-          <input data-stage="${index}" data-key="name" value="${esc(stage.name)}">
-        </div>
-        <div class="field">
-          <label>Время</label>
-          <input data-stage="${index}" data-key="time" value="${esc(stage.time)}" placeholder="Например: 10 минут">
-        </div>
-        <div class="field full">
-          <label>Содержание этапа</label>
-          <textarea data-stage="${index}" data-key="content">${esc(stage.content)}</textarea>
-        </div>
-        <div class="field">
-          <label>Действия руководителя</label>
-          <textarea data-stage="${index}" data-key="leader">${esc(stage.leader)}</textarea>
-        </div>
-        <div class="field">
-          <label>Действия обучаемых</label>
-          <textarea data-stage="${index}" data-key="trainees">${esc(stage.trainees)}</textarea>
-        </div>
-        <div class="field full">
-          <label>Нормативный источник</label>
-          <input data-stage="${index}" data-key="source" value="${esc(stage.source)}" placeholder="Например: статья 31 Устава">
-        </div>
-      </div>
-    </div>
-  `).join("");
-
-  $("stages").querySelectorAll("[data-stage]").forEach(field => {
-    field.addEventListener("input", () => {
-      const index = Number(field.dataset.stage);
-      currentStages[index][field.dataset.key] = field.value;
-    });
-  });
-
-  $("stages").querySelectorAll("[data-remove-stage]").forEach(button => {
-    button.addEventListener("click", () => {
-      currentStages.splice(Number(button.dataset.removeStage), 1);
-      renderStages();
-    });
-  });
-}
-
-function getEditorData() {
-  return {
-    id:currentId || String(Date.now()),
-    updated:new Date().toISOString(),
-    unit:$("unit").value,
-    docTitle:$("docTitle").value,
-    topic:$("topic").value,
-    leader:$("leader").value,
-    group:$("group").value,
-    place:$("place").value,
-    date:$("date").value,
-    duration:$("duration").value,
-    goal:$("goal").value,
-    questions:$("questions").value,
-    equipment:$("equipment").value,
-    notes:$("notes").value,
-    stages:currentStages
-  };
-}
-
-function loadEditor(plan) {
-  currentId = plan.id;
-  ["unit","docTitle","topic","leader","group","place","date","duration","goal","questions","equipment","notes"].forEach(id => {
-    $(id).value = plan[id] ?? "";
-  });
-  currentStages = Array.isArray(plan.stages) ? structuredClone(plan.stages) : [];
-  renderStages();
-  $("saveStatus").textContent = "Открыт сохранённый конспект.";
-  showPage("editor");
-}
-
-function savePlan() {
-  const plan = getEditorData();
-  if (!plan.topic.trim()) {
-    alert("Укажи тему занятия перед сохранением.");
-    $("topic").focus();
-    return;
-  }
-  const plans = readPlans();
-  const index = plans.findIndex(item => item.id === plan.id);
-  if (index >= 0) plans[index] = plan;
-  else plans.unshift(plan);
-  writePlans(plans);
-  currentId = plan.id;
-  $("saveStatus").textContent = "Конспект сохранён на этом устройстве.";
-  renderHome();
-}
-
-function deletePlan(id) {
-  if (!confirm("Удалить этот конспект?")) return;
-  writePlans(readPlans().filter(plan => plan.id !== id));
-  renderPlans();
-  renderHome();
-}
-
-function renderPlans() {
-  const plans = readPlans();
-  $("allPlans").innerHTML = plans.length ? plans.map(plan => `
-    <div class="panel">
-      <strong>${esc(plan.topic || "Без названия")}</strong>
-      <p class="muted">${esc(plan.date || "Дата не указана")} · ${esc(plan.place || "Место не указано")}</p>
-      <div class="actions">
-        <button data-open="${esc(plan.id)}">Открыть</button>
-        <button class="danger" data-delete="${esc(plan.id)}">Удалить</button>
-      </div>
-    </div>
-  `).join("") : '<p class="muted">Сохранённых конспектов пока нет.</p>';
-
-  $("allPlans").querySelectorAll("[data-open]").forEach(button => {
-    button.addEventListener("click", () => {
-      const plan = readPlans().find(item => item.id === button.dataset.open);
-      if (plan) loadEditor(plan);
-    });
-  });
-  $("allPlans").querySelectorAll("[data-delete]").forEach(button => {
-    button.addEventListener("click", () => deletePlan(button.dataset.delete));
-  });
-}
-
-function renderHome() {
-  topicButtons("homeTopics");
-  const plans = readPlans().slice(0,3);
-  $("recentPlans").innerHTML = plans.length ? plans.map(plan => `
-    <button class="plan-item" data-recent="${esc(plan.id)}">
-      <span><strong>${esc(plan.topic || "Без названия")}</strong><small>${esc(plan.date || "Дата не указана")}</small></span>
-      <span>›</span>
-    </button>
-  `).join("") : '<p class="muted">Здесь появятся твои сохранённые конспекты.</p>';
-
-  $("recentPlans").querySelectorAll("[data-recent]").forEach(button => {
-    button.addEventListener("click", () => {
-      const plan = readPlans().find(item => item.id === button.dataset.recent);
-      if (plan) loadEditor(plan);
-    });
-  });
-}
-
-function renderRegulations() {
-  topicButtons("regulationTopics");
-}
-
-function exportData() {
-  const blob = new Blob([JSON.stringify(readPlans(),null,2)], {type:"application/json"});
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = "stroevoy-konspekt-backup.json";
-  link.click();
-  URL.revokeObjectURL(url);
-}
-
-function importData(file) {
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = () => {
-    try {
-      const imported = JSON.parse(reader.result);
-      if (!Array.isArray(imported)) throw new Error("Неверный формат");
-      const existing = readPlans();
-      const merged = [...existing];
-      imported.forEach(plan => {
-        if (plan && plan.id) {
-          const index = merged.findIndex(item => item.id === plan.id);
-          if (index >= 0) merged[index] = plan;
-          else merged.push(plan);
-        }
-      });
-      writePlans(merged);
-      alert("Резервная копия импортирована.");
-      renderPlans();
-      renderHome();
-    } catch {
-      alert("Не удалось прочитать файл. Проверь, что это резервная копия приложения в формате JSON.");
-    }
-  };
-  reader.readAsText(file);
-}
-
-document.querySelectorAll("nav button").forEach(button => {
-  button.addEventListener("click", () => showPage(button.dataset.page));
-});
-
-$("blankPlan").addEventListener("click", () => newPlan());
-$("newPlan").addEventListener("click", () => newPlan());
-$("addStage").addEventListener("click", () => {
-  currentStages.push(blankStage());
-  renderStages();
-});
-$("savePlan").addEventListener("click", savePlan);
-$("printPlan").addEventListener("click", () => window.print());
-$("exportData").addEventListener("click", exportData);
-$("importData").addEventListener("click", () => $("importFile").click());
-$("importFile").addEventListener("change", event => {
-  importData(event.target.files[0]);
-  event.target.value = "";
-});
-
-renderHome();
-renderRegulations();
-
-if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js").catch(error => {
-      console.log("Service Worker не зарегистрирован:", error);
-    });
-  });
-}
-</script>
-</body>
-</html>
+const D={
+27:["Строевая стойка","Статья 27",["Строевая стойка принимается по команде «СТАНОВИСЬ» или «СМИРНО».","Каблуки ставятся вместе, носки выравниваются по линии фронта на ширину ступни; ноги выпрямляются в коленях без напряжения.","Грудь приподнимается, тело несколько подаётся вперёд, живот подбирается, плечи разворачиваются.","Руки опускаются; кисти обращены ладонями внутрь и находятся сбоку посредине бёдер; пальцы полусогнуты и касаются бедра.","Голова держится высоко и прямо, подбородок не выставляется; взгляд направлен прямо перед собой."]],
+28:["Команды «ВОЛЬНО» и «ЗАПРАВИТЬСЯ»","Статья 28",["По команде «ВОЛЬНО» стать свободно, ослабить в колене правую или левую ногу, не сходить с места, не ослаблять внимания и не разговаривать.","По команде «ЗАПРАВИТЬСЯ», не оставляя своего места в строю, поправить оружие, обмундирование и снаряжение.","Перед командой «ЗАПРАВИТЬСЯ» подаётся команда «ВОЛЬНО»."]],
+29:["Снятие и надевание головного убора","Статья 29",["Для снятия головных уборов подаётся команда «Головные уборы (головной убор) — СНЯТЬ», для надевания — «Головные уборы (головной убор) — НАДЕТЬ».","Снятый головной убор держится в левой свободно опущенной руке кокардой вперёд.","Без оружия или с оружием в положении «за спину» головной убор снимается и надевается правой рукой; с оружием в положениях «на ремень», «на грудь» и «у ноги» — левой.","При снятии головного убора с карабином в положении «на плечо» карабин предварительно берётся к ноге."]],
+30:["Повороты на месте","Статья 30",["Команды: «Напра-ВО», «Пол-оборота напра-ВО», «Нале-ВО», «Пол-оборота нале-ВО», «Кру-ГОМ».","Поворот кругом, налево и пол-оборота налево производится в сторону левой руки на левом каблуке и правом носке.","Поворот направо и пол-оборота направо производится в сторону правой руки на правом каблуке и левом носке.","Повороты выполняются в два приёма: повернуться, сохраняя правильное положение корпуса, затем кратчайшим путём приставить другую ногу."]],
+31:["Движение: шаг и бег, темп и размер шага","Статья 31",["Движение совершается шагом или бегом; шаг бывает строевой и походный.","Темп движения шагом — 110–120 шагов в минуту; размер шага — 70–80 см.","Темп движения бегом — 165–180 шагов в минуту; размер шага — 85–90 см.","Строевой шаг применяется в случаях, перечисленных статьёй; походный шаг — во всех остальных случаях."]],
+32:["Движение строевым и походным шагом","Статья 32",["Строевой шаг начинается по команде «Строевым шагом — МАРШ» (в движении — «Строевым — МАРШ»), походный — «Шагом — МАРШ».","По предварительной команде корпус подаётся несколько вперёд, тяжесть тела переносится больше на правую ногу; по исполнительной команде движение начинается с левой ноги полным шагом.","При строевом шаге нога с оттянутым вперёд носком выносится на высоту 15–20 см и ставится твёрдо на всю ступню.","При походном шаге нога выносится свободно, без оттягивания носка; руки движутся свободно.","По команде «СМИРНО» при походном шаге переходят на строевой; по команде «ВОЛЬНО» при строевом идут походным шагом."]],
+33:["Движение бегом","Статья 33",["Движение бегом начинается по команде «Бегом — МАРШ».","При начале движения с места корпус слегка подаётся вперёд, руки полусгибаются, локти отводятся несколько назад; движение начинается с левой ноги.","Переход с шага на бег выполняется по исполнительной команде, подаваемой одновременно с постановкой левой ноги на землю.","Для перехода с бега на шаг подаётся команда «Шагом — МАРШ»; исполнительная команда подаётся одновременно с постановкой правой ноги на землю."]],
+34:["Шаг на месте","Статья 34",["Шаг на месте обозначается по команде «На месте, шагом — МАРШ», в движении — «НА МЕСТЕ».","Ногу поднимать на 15–20 см от земли и ставить на всю ступню, начиная с носка; руками производить движения в такт шага.","По команде «ПРЯМО» сделать правой ногой ещё один шаг на месте и с левой ноги начать движение полным шагом.","Первые три шага должны быть строевыми."]],
+35:["Остановка движения","Статья 35",["Для прекращения движения подаётся команда; в Уставе приведён пример: «Рядовой Петров — СТОЙ».","Исполнительная команда подаётся одновременно с постановкой на землю правой или левой ноги.","По команде сделать ещё один шаг, приставить ногу и принять строевую стойку."]],
+36:["Изменение скорости движения","Статья 36",["Команды: «ШИРЕ ШАГ», «КОРОЧЕ ШАГ», «ЧАЩЕ ШАГ», «РЕЖЕ ШАГ», «ПОЛШАГА», «ПОЛНЫЙ ШАГ»."]],
+37:["Перемещение на несколько шагов","Статья 37",["Для перемещения в сторону подаётся команда с указанием количества шагов и направления; пример Устава: «Два шага вправо (влево), шагом — МАРШ».","Для перемещения вперёд или назад подаётся команда с указанием количества шагов и направления.","После каждого шага при перемещении в сторону приставляется нога.","При перемещении вправо, влево и назад движение руками не производится."]],
+38:["Повороты в движении","Статья 38",["Команды: «Напра-ВО», «Пол-оборота напра-ВО», «Нале-ВО», «Пол-оборота нале-ВО», «Кругом — МАРШ».","Для поворотов направо и налево исполнительная команда подаётся одновременно с постановкой на землю соответствующей ноги; затем выполняется шаг, поворот на носке и продолжение движения.","Для поворота кругом исполнительная команда подаётся одновременно с постановкой правой ноги на землю; далее выполняется поворот в сторону левой руки.","При поворотах движение руками производится в такт шага."]]
+};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $=id=>document.getElementById(id);
+$("date").value=new Date().toISOString().slice(0,10);
+function gen(){let id=$("topic").value,d=D[id],mins=parseInt($("duration").value),a=Math.round(mins*.1),c=Math.round(mins*.1),m=mins-a-c,lev=$("level").value,role=$("role").value,leader=$("leader").value||"________________",unit=$("unit").value||"________________";
+let levelText={
+"Отделение":"Руководитель лично показывает приём отделению, затем организует индивидуальное и общее повторение; ошибки исправляются непосредственно после выполнения.",
+"Взвод":"Руководитель проводит общий показ, затем организует последовательную отработку в отделениях под контролем командиров отделений; проверяет действия каждого отделения.",
+"Рота":"Руководитель доводит порядок работы командирам взводов, проводит общий показ, после чего взводы отрабатывают приём под руководством своих командиров; руководитель контролирует результаты.",
+"Батальон":"Руководитель доводит задачу командирам рот, проводит общий показ и организует отработку по ротам; командиры рот руководят работой подразделений, руководитель занятия контролирует ход и результаты."
+}[lev];
+let roleText=role==="Командир подразделения"?"Командир подразделения лично подаёт команды, показывает приём, контролирует подчинённых и исправляет ошибки.":"Назначенный руководитель проводит занятие в пределах поставленной задачи, руководит отработкой и докладывает командиру подразделения о результатах.";
+let facts=d[2].map((x,i)=>`${i+1}. ${x}`).join("\n");
+let intro="Построить обучаемых, проверить наличие личного состава и готовность к занятию. Объявить тему и цель, указать место и порядок проведения. Напомнить о точном выполнении подаваемых команд.";
+let main=`Учебный вопрос 1. Разъяснение нормативных положений.\nРуководитель доводит содержание ${d[1]}:\n${facts}\n\nУчебный вопрос 2. Показ и практическая отработка.\nРуководитель показывает приём целиком, затем выделяет элементы, прямо описанные в статье. Подаёт предусмотренные для темы команды. Обучаемые выполняют действия по командам. Руководитель наблюдает, указывает на конкретные ошибки относительно текста статьи и организует повторение.\n\nОрганизация работы на уровне «${lev}»: ${levelText}\n\nРаспределение руководящих действий: ${roleText}`;
+let conclusion="Построить обучаемых. Повторить основные требования статьи, разобрать типичные ошибки, дать указания по их устранению, подвести итог занятия.";
+$("paper").innerHTML=`<div class="approval">УТВЕРЖДАЮ<br>________________________________<br>________________________________<br>«___» __________ 20___ г.</div><h2>ПЛАН-КОНСПЕКТ</h2><p class="center">проведения занятия по строевой подготовке</p><p><b>Подразделение:</b> ${esc(unit)}</p><p><b>Тема:</b> ${esc(d[0])}</p><p><b>Цель:</b> Отработать положения, установленные ${esc(d[1].toLowerCase())}.</p><p><b>Категория:</b> ${esc($("aud").value)}</p><p><b>Время:</b> ${esc($("duration").value)}</p><p><b>Место:</b> ${esc($("place").value)}</p><p><b>Руководитель:</b> ${esc(leader)}; роль: ${esc(role)}</p><p><b>Дата:</b> ${esc($("date").value)}</p><p><b>Материальное обеспечение:</b> Строевой устав ВС РФ; площадка для практической отработки.</p><p><b>Нормативная основа:</b> ${esc(d[1])}, пользовательский PDF «Строевой устав.pdf», страницы 7–10.</p><h3>ХОД ЗАНЯТИЯ</h3><table><tr><th>Учебные вопросы и действия руководителя</th><th>Действия обучаемых</th><th>Время</th></tr><tr><td><b>Вводная часть</b><br>${esc(intro)}</td><td>Строятся, слушают объявление темы и цели, выполняют указания.</td><td>${a} мин.</td></tr><tr><td><b>Основная часть</b><br>${esc(main).replace(/\n/g,"<br>")}</td><td>Слушают объяснение, наблюдают показ, выполняют приём по командам, повторяют действия и устраняют замечания.</td><td>${m} мин.</td></tr><tr><td><b>Заключительная часть</b><br>${esc(conclusion)}</td><td>Слушают разбор и указания руководителя.</td><td>${c} мин.</td></tr></table><p><b>Положения статьи для контроля:</b></p><ol>${d[2].map(x=>`<li>${esc(x)}</li>`).join("")}</ol><p><b>Методическое примечание:</b> распределение времени, учебные этапы и организационные решения для уровня подразделения предложены генератором; они не являются требованиями Строевого устава и должны быть проверены руководителем с учётом программы подготовки.</p><p style="text-align:right;margin-top:28px">Руководитель занятия: ${esc(leader)} ____________</p>`;
+$("status").textContent="Документ сформирован. Перед применением проверьте реквизиты и методическую часть."}
+$("make").onclick=gen;$("print").onclick=()=>window.print();
+function formData(){return Object.fromEntries(["unit","level","role","leader","date","duration","place","aud","topic"].map(k=>[k,$(k).value]))}
+$("save").onclick=()=>{localStorage.setItem("konspekt-komandira",JSON.stringify({form:formData(),html:$("paper").innerHTML}));$("status").textContent="Сохранено в этом браузере."};
+$("export").onclick=()=>{let blob=new Blob([JSON.stringify({form:formData(),html:$("paper").innerHTML},null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="konspekt-komandira-backup.json";a.click();URL.revokeObjectURL(a.href)};
+$("importBtn").onclick=()=>$("file").click();$("file").onchange=async e=>{try{let o=JSON.parse(await e.target.files[0].text());Object.entries(o.form||{}).forEach(([k,v])=>{if($(k))$(k).value=v});$("paper").innerHTML=o.html||"";$("status").textContent="Резервная копия импортирована."}catch{$("status").textContent="Не удалось прочитать резервную копию."}};
+try{let o=JSON.parse(localStorage.getItem("konspekt-komandira")||"null");if(o){Object.entries(o.form||{}).forEach(([k,v])=>{if($(k))$(k).value=v});$("paper").innerHTML=o.html||$("paper").innerHTML}}catch{}
+if("serviceWorker"in navigator)navigator.serviceWorker.register("./sw.js").catch(()=>{});
+</script></body></html>
